@@ -10,7 +10,7 @@ It's in the public domain with USE_CODE_REQUIRING_ATTRIBUTION not defined in RRB
 Use
 --------
 
-Your class which implements the `SKPaymentTransactionObserver` protocol will call RRVerificationController like so: This example assumes that class will also implement `RRVerificationControllerDelegate` which is probably the most straightforward use.
+This example assumes that your `SKPaymentTransactionObserver` conformant class will also implement `RRVerificationControllerDelegate`.
 
 You'll need your iTunes Connect In App Purchase Shared Secret, which you can find/generate via **iTunes Connect -> Manage Apps -> your app -> Manage In App Purchases**.
 
