@@ -18,7 +18,7 @@
 
 const char *base64_encode(const void* buf, size_t size);
 NSData *base64_decode(NSString *input);
-BOOL checkReceiptSecurity(NSString *purchase_info_string, NSString *signature_string, CFDateRef purchaseDate);
+static BOOL checkReceiptSecurity(NSString *purchase_info_string, NSString *signature_string, CFDateRef purchaseDate);
 
 @synthesize transaction, delegate, controller;
 @synthesize originalPurchaseInfoDict;
@@ -555,7 +555,7 @@ unsigned char iTS_intermediate_der[] = {
 };
 
 
-BOOL checkReceiptSecurity(NSString *purchase_info_string, NSString *signature_string, CFDateRef purchaseDate)
+static BOOL checkReceiptSecurity(NSString *purchase_info_string, NSString *signature_string, CFDateRef purchaseDate)
 {
     BOOL valid = NO;
     SecCertificateRef leaf = NULL, intermediate = NULL;
