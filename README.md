@@ -79,3 +79,5 @@ RRVerificationControllerDelegate is implemented like so:
 Everything else is handled automatically; just put your own logic in performUpgrade, failedTransaction:, and displayFailureMessage, with no changes needed to the verification controller code.
 
 These classes are intended to be compiled with ARC enabled. Be sure to specify `-fobjc-arc` in the 'Compile Sources' Build Phase for each file if you aren't using ARC project-wide 
+
+You'll need to link against Security.framework to use the classes.
