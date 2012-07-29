@@ -28,6 +28,7 @@ You'll need your iTunes Connect In App Purchase Shared Secret, which you can fin
 			case SKPaymentTransactionStatePurchasing:
 				break;
 			case SKPaymentTransactionStatePurchased:
+			     /* If verification is successful, the delegate's verificationControllerDidVerifyPurchase:isValid: method will be called to take appropriate action and complete the transaction */
 				if ([[RRVerificationController sharedInstance] verifyPurchase:transaction
 																 withDelegate:self
 																		error:NULL] == FALSE) {
@@ -38,6 +39,7 @@ You'll need your iTunes Connect In App Purchase Shared Secret, which you can fin
 				[self failedTransaction:transaction];
 				break;
 			case SKPaymentTransactionStateRestored:
+				/* If verification is successful, the delegate's verificationControllerDidVerifyPurchase:isValid: method will be called to take appropriate action and complete the transaction */
 				if ([[RRVerificationController sharedInstance] verifyPurchase:transaction
 																 withDelegate:self
 																		error:NULL] == FALSE) {
@@ -59,6 +61,9 @@ RRVerificationControllerDelegate is implemented like so:
 		[self performUpgrade];
 	else
 		[self displayFailureMessage];
+		
+	if (transaction.transactionState != SKPaymentTransactionStatePurchasing)
+		[[SKPaymentQueue defaultQueue] finishTransaction:transaction];
  }
  
  - (void)verificationControllerDidFailToVerifyPurchase:(SKPaymentTransaction *)transaction error:(NSError *)error
